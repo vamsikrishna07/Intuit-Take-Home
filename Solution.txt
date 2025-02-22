@@ -1,0 +1,31 @@
+Below are the detailed steps followed to solve this problem and the time complexity of each step. I also mentioned the assumptions that I made to solve this problem. 
+
+1. Input Parsing:
+First, the file is read line by line. Every line that specifies a black cell (using the format "cell at x=…,y=…") is parsed to extract its x and y coordinates. These coordinates are stored as tuples in a  set. At the same time, any line that describes a fold instruction (for example, "fold up along y=5" or "fold left along x=7") is also parsed, and the instruction is saved as a tuple containing the direction and the folding line value.
+Time Complexity:
+Reading and parsing each line takes O(1) per line. If there are N lines in total (cells and instructions), this step runs in O(N) time.
+
+2. Folding the Paper:
+With all the black cells and folding instructions in hand, the next step is to simulate the paper folding. For each fold instruction, every cell’s position is examined:
+    a. If the fold is along the y-axis (for an "up" or "down" fold), the y-coordinate of any cell on the side being folded is adjusted by reflecting it across the given y-value.
+    b. Similarly, if the fold is along the x-axis (for a "left" or "right" fold), the x-coordinate is reflected as needed. As cells are reflected, the new positions are stored in a new set. If two or more  cells end up in the same location after a fold, the set automatically takes care of duplicates.
+Time Complexity:
+Let m be the number of fold instructions and n be the number of cells (which may decrease with subsequent folds). For each fold, every cell is examined and this is O(n) per fold. In the worst-case, if n remains roughly constant, the overall complexity is O(m · n).
+
+3. Building the Grid:
+After applying all the fold instructions, the final set of black cells represents the folded paper. To visualize the result, the next step is to create a matrix from these coordinates:
+    a. First, the maximum x and y values among the black cells are determined to establish the grid’s dimensions.
+    b. Then, for each row (from 0 to the maximum y) and each column (from 0 to the maximum x), the grid is constructed as a string of characters. A cell is marked (for instance, with "$") if its coordinates exist in the set, otherwise a blank space is used. To optimize this process, list comprehensions and join operations are used, which are much faster than concatenating strings in a loop.
+Time Complexity:
+Finding x_max and y_max by scanning through n cells is O(n).
+Constructing the grid requires iterating over all positions in the grid. If the grid dimensions are W (width) and H (height), then this part takes O(W · H).
+
+Overall Time complexity: O(m . n), where m = number of folds, n = number of cells
+Overall Space complexity: O(n)
+
+
+Assumptions made: 
+1. I noticed that the inputs in the secret-message files are properly structured (i.e. the lines are either like "cell at x=(some integer),y=(some integer) or "fold up along x=(some integer)), and hence didn't perform any data cleaning.
+2. Co-ordinates to be non-negative
+3. Direcitons are valid ( i.e. each one is either up/down/right/left )
+4. No noise in the data ( i.e. very large co-ordinates )

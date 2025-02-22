@@ -125,3 +125,5 @@ think are valuable to keep your code clean and reusable (Freddie's friends will 
 Think through edge cases and test scenarios that can help us assert the correctness of your program.
 
 Decode the other secret messages and see if you can help Freddie find out where in the world his uniform is!
+
+Refer to Solutions.txt for the detailed explanation of the solution and the time complexity for each step. 

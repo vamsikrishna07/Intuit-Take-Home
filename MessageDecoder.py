@@ -1,4 +1,4 @@
 class MessageDecoder:
-    def decode(matrix):
+    def decode(self, matrix):
         for row in matrix:
-            print(matrix)
+            print(row)

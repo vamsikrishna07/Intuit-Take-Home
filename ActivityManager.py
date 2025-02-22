@@ -15,4 +15,4 @@ class ActivityManager:
         cells, folds = self.input_parser.parse()
         cells = self.matrix_folder.apply_folds(cells=cells, folds=folds)
         matrix = self.matrix_buider.build_matrix(cells=cells)
-        self.message_decoder.decode(matrix) 
+        self.message_decoder.decode(matrix)

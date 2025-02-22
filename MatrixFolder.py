@@ -3,23 +3,24 @@ import numpy as np
 class MatrixFolder:
     def fold(self, cells, fold):
         dir, value = fold
-        cells = cells.copy()
-        if dir == 'up' or dir == 'down':
+        new_cells = set()
+        for x, y in cells:
             if dir == 'up':
-                mask = cells[:,1] > value
-                cells[mask, 1] = value - (cells[mask, 1] - value)
+                if y > value:
+                    y = value - (y - value)
+            elif dir == 'down':
+                if y < value:
+                    y = value + (value - y)
+            elif dir == 'left':
+                if x > value:
+                    x = value - (x - value)
+            elif dir == 'right':
+                if x < value:
+                    x = value + (x - value)
             else:
-                mask = cells[:,1] < value
-                cells[mask, 1] = value + (value - cells[mask, 1])
-        elif dir == 'left' or dir == 'right':
-            if dir == 'left':
-                mask = cells[:,0] > value
-                cells[mask, 0] = value - (cells[mask, 0] - value)
-            else:
-                mask = cells[:,0] < value
-                cells[mask, 0] = value + (value - cells[mask, 0])
-        cells = np.unique(cells, axis=0)
-        return cells
+                continue
+            new_cells.add((x,y))
+        return new_cells
     
     def apply_folds(self, cells, folds):
         for fold in folds:

@@ -4,7 +4,7 @@ class InputParser:
         self.file_path = file_path
     
     def parse(self):
-        cells, folds = [], []
+        cells, folds = set(), []
         with open(self.file_path) as f:
             for line in f:
                 line = line.strip()
@@ -15,7 +15,7 @@ class InputParser:
                     x_coord, y_coord = coordinates.split(',')
                     x = int(x_coord.split("=")[-1])
                     y = int(y_coord.split("=")[-1])
-                    cells.append([x,y])
+                    cells.add((x,y))
                 elif line[:4] == "fold":
                     words = line.split()
                     direction = words[1]
@@ -24,5 +24,4 @@ class InputParser:
                     folds.append((direction, value))
                 else:
                     continue
-        cells = np.array(cells)
-        return (cells, folds)
+        return cells, folds

@@ -29,3 +29,9 @@ Assumptions made:
 2. Co-ordinates to be non-negative
 3. Direcitons are valid ( i.e. each one is either up/down/right/left )
 4. No noise in the data ( i.e. very large co-ordinates )
+
+Instructions to run project:
+
+1. Download all the files in this project
+2. Run Main.Py file
+3. Coded messages are saved in output.txt files 

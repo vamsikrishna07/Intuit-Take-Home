@@ -11,6 +11,6 @@ class MatrixBuilder:
         for y in range(y_max+1):
             rows = []
             for x in range(x_max+1):
-                rows.append('$' if (x,y) in cells else ' ')
+                rows.append('#' if (x,y) in cells else ' ')
             matrix.append(''.join(rows))
         return matrix
